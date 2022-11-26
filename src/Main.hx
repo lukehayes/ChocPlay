@@ -9,14 +9,13 @@ class Main extends hxd.App {
     var world : World;
 
     override function init() {
-        g = new h2d.Graphics(s2d);
         world = World.instance;
 
-        var e = new sim.BasicEntity(1);
-        e.addComponent(new sim.components.TransformComponent());
+        var e = new sim.BasicEntity();
+        e.addComponent("Transform", new sim.components.TransformComponent());
 
-
-        world.addSystem(new sim.system.BasicSystem());
+        world.addEntity(1, e);
+        world.addSystem(new sim.system.BasicSystem(this));
     }
 
     override function update(dt:Float) 
