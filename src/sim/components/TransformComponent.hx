@@ -11,8 +11,10 @@ class TransformComponent extends Component
     public var h = 10;
     public var color = 0x00FF00;
 
-    public function new()
+    public function new(x,y)
     {
         super("Transform");
+        this.x = x;
+        this.y = y;
     }
 }
