@@ -21,6 +21,9 @@ class Main extends hxd.App {
         e2.addComponent("Transform", new sim.components.TransformComponent(130,330));
         world.addEntity(2, e2);
 
+        var e3 = new sim.BasicEntity();
+        e3.addComponent("Transform", new sim.components.TransformComponent(430,30));
+        world.addEntity(3, e3);
     }
 
     override function update(dt:Float) 
