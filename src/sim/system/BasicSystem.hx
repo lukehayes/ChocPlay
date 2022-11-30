@@ -9,16 +9,26 @@ class BasicSystem extends System
     var g : h2d.Graphics;
     var scene:h2d.Scene;
     var cam:h2d.Camera;
+    var app: hxd.App;
 
     public function new(app:hxd.App)
     {
         super("Basic");
         scene = new h2d.Scene();
+        this.app = app;
+        this.app.setScene(scene);
+
         g = new h2d.Graphics(this.scene);
-        app.setScene(scene);
         cam = new h2d.Camera(scene);
-        scene.addCamera(cam);
-        cam.scale(0.5, 0.5);
+
+        //scene.addCamera(cam);
+        //cam.scale(0.5, 0.5);
+
+        for(cam in scene.cameras)
+        {
+            trace("--");
+            trace(cam);
+        }
 
         this.requires("Transform");
     }
