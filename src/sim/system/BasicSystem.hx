@@ -30,9 +30,12 @@ class BasicSystem extends System
         g.clear();
         for(entity in this.filteredEntities)
         {
-            trace("Drawing");
             var t = cast(entity.getComponent("Transform"), TransformComponent);
-            trace(t.x);
+
+            t.x += t.dx * t.speed * dt;
+            t.y += t.dy * t.speed * dt;
+
+            checkEdgeCollision(t);
 
             g.beginFill(t.color);
                 g.drawRect(t.x, t.y, t.w,t.h);
@@ -40,5 +43,19 @@ class BasicSystem extends System
         }
 
         this.filteredEntities = [];
+    }
+
+    private function checkEdgeCollision(t:TransformComponent)
+    {
+        if(t.x < 0 || t.x > app.engine.width)
+        {
+            t.dx = -t.dx;
+        }
+
+        if(t.y < 0 || t.y > app.engine.height)
+        {
+            t.dy = -t.dy;
+        }
+
     }
 }
