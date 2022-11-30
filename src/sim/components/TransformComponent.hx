@@ -9,6 +9,8 @@ class TransformComponent extends Component
     public var y : Float =  10;
     public var w = 10;
     public var h = 10;
+    public var dx = 1;
+    public var dy = 1;
     public var color = 0x00FF00;
 
     public function new(x,y)
