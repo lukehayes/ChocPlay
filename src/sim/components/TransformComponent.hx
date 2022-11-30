@@ -11,6 +11,7 @@ class TransformComponent extends Component
     public var h = 10;
     public var dx = 1;
     public var dy = 1;
+    public var speed = 300;
     public var color = 0x00FF00;
 
     public function new(x,y)
