@@ -13,17 +13,15 @@ class Main extends hxd.App {
 
         world.addSystem(new sim.system.BasicSystem(this));
 
-        var e1 = new sim.BasicEntity();
-        e1.addComponent("Transform", new sim.components.TransformComponent(30,30));
-        world.addEntity(1, e1);
-
-        var e2 = new sim.BasicEntity();
-        e2.addComponent("Transform", new sim.components.TransformComponent(130,330));
-        world.addEntity(2, e2);
-
-        var e3 = new sim.BasicEntity();
-        e3.addComponent("Transform", new sim.components.TransformComponent(430,30));
-        world.addEntity(3, e3);
+        for(i in 1...10)
+        {
+            var e1 = new sim.BasicEntity();
+            var t1 = new sim.components.TransformComponent(Random.int(1,i), Random.int(1,i));
+            t1.dx = Random.int(-1,1);
+            t1.dy = Random.int(-1,1);
+            e1.addComponent("Transform", t1);
+            world.addEntity(i, e1);
+        }
     }
 
     override function update(dt:Float) 
