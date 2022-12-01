@@ -2,33 +2,20 @@ package sim.system;
 
 import choc.system.System;
 import sim.components.TransformComponent;
+import sim.scene.TestScene;
 
 
 class BasicSystem extends System
 {
-    var g : h2d.Graphics;
-    var scene:h2d.Scene;
-    var cam:h2d.Camera;
+    var scene:TestScene;
     var app: hxd.App;
 
     public function new(app:hxd.App)
     {
         super("Basic");
-        scene = new h2d.Scene();
+        scene = new TestScene();
         this.app = app;
         this.app.setScene(scene);
-
-        g = new h2d.Graphics(this.scene);
-        cam = new h2d.Camera(scene);
-
-        //scene.addCamera(cam);
-        //cam.scale(0.5, 0.5);
-
-        for(cam in scene.cameras)
-        {
-            trace("--");
-            trace(cam);
-        }
 
         this.requires("Transform");
     }
@@ -37,7 +24,7 @@ class BasicSystem extends System
     {
         this.filterEntities();
 
-        g.clear();
+        scene.g.clear();
         for(entity in this.filteredEntities)
         {
             var t = cast(entity.getComponent("Transform"), TransformComponent);
@@ -47,9 +34,9 @@ class BasicSystem extends System
 
             checkEdgeCollision(t);
 
-            g.beginFill(t.color);
-                g.drawRect(t.x, t.y, t.w,t.h);
-            g.endFill();
+            scene.g.beginFill(t.color);
+                scene.g.drawRect(t.x, t.y, t.w,t.h);
+            scene.g.endFill();
         }
 
         this.filteredEntities = [];
